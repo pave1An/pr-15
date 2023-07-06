@@ -72,7 +72,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://api.messto.nomoreparties.sbs',
+  baseUrl: 'api.messto.nomoreparties.sbs',
   headers: {
     'Content-Type': 'application/json'
   }
