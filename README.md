@@ -17,7 +17,7 @@
 * Express
 * MongoDB
 
-Посмотреть работу можно [здесь](https:// "Перейти").
+Посмотреть работу можно [здесь](https://github.com/pave1An/pr-15.git "Перейти").
 
 * IP  84.201.163.139
 * Frontend  https://messto.nomoreparties.sbs
