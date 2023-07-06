@@ -50,7 +50,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'api.messto.nomoreparties.sbs',
+  baseUrl: 'https://api.messto.nomoreparties.sbs',
   headers: { 
     'Content-Type': 'application/json' 
   }
