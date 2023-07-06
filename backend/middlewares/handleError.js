@@ -29,7 +29,6 @@ function handleError(err, req, res, next) {
   }
 
   const error = setError();
-
   res.status(error.statusCode).send({ message: error.message, err });
   next();
 }

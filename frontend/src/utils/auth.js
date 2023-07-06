@@ -16,12 +16,12 @@ class Auth {
   }
 
   registration({ password, email }) {
-    return this._request(`/signup`, {
+    return this._request('/signup', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        'email' : email,
-        'password': password
+        "email" : email,
+        "password": password
       })
     });
   }
@@ -29,29 +29,29 @@ class Auth {
   login({ password, email }) {
     return this._request('/signin', {
       method: 'POST',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
-        'email' : email,
-        'password': password
+        "email" : email,
+        "password" : password
       })
     });
   }
 
-  checkToken(jwt) {
+  checkToken() {
     return this._request('/users/me', {
       method: 'GET',
+      credentials: 'include',
       headers: {
         'Content-Type': 'aplication/json',
-        'Authorization': `Bearer ${jwt}`
       }
     });
   }
 }
 
 const auth = new Auth({
-  baseUrl: 'http://127.0.0.1:3000',
+  baseUrl: 'http://api.messto.nomoreparties.sbs',
   headers: { 
-    authorization: '5df01682-9d36-4915-9eb9-b7271e1fc542',
     'Content-Type': 'application/json' 
   }
 });

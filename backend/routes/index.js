@@ -7,6 +7,11 @@ const { login, createUser } = require('../controllers/users');
 const { userSchema, loginSchema } = require('../utils/joi-schemas');
 const NotFoundError = require('../utils/errors/not-found-error');
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 router.post('/signup', celebrate({ body: userSchema }), createUser);
 router.post('/signin', celebrate({ body: loginSchema }), login);
 router.use(auth);

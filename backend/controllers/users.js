@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const NotFoundError = require('../utils/errors/not-found-error');
 const UnauthorizedError = require('../utils/errors/unauthorized-error');
-const { jwtKey } = require('../utils/constants');
+const { setSecretKey } = require('../utils/secretKey');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -64,7 +64,7 @@ const login = (req, res, next) => {
       bcrypt.compare(String(password), user.password)
         .then((isUserValid) => {
           if (isUserValid) {
-            const token = jwt.sign({ _id: user._id }, jwtKey);
+            const token = jwt.sign({ _id: user._id }, setSecretKey());
             res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true });
             res.send(user.deletePassword());
           } else {

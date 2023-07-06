@@ -120,9 +120,9 @@ function App() {
   
   function handleLogin({ email, password }) {
     auth.login({ email, password })
-    .then((data) => {
-      if(data.token) {
-        localStorage.setItem('jwt', data.token);
+    .then((res) => {
+      if(res.email) {
+        localStorage.setItem('userLoggedIn', true);
         setUserEmail(email);
         setLoggedIn(true); 
         navigate('/', {replace: true});
@@ -132,12 +132,12 @@ function App() {
   }
 
   const checkToken = useCallback(() => {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt) {
-      auth.checkToken(jwt)
+    const userLoggedIn = localStorage.getItem('userLoggedIn');
+    if(userLoggedIn === 'true') {
+      auth.checkToken()
       .then(res => {
-        if(res.data.email) {
-          setUserEmail(res.data.email);
+        if(res.email) {
+          setUserEmail(res.email);
           setLoggedIn(true); 
           navigate('/', {replace: true});
         }
@@ -149,7 +149,7 @@ function App() {
   function handleSignout() {
     setUserEmail('');
     setLoggedIn(false);
-    localStorage.setItem('jwt', '');
+    localStorage.setItem('userLoggedIn', false);
   }
 
   function closeAllPopups() {

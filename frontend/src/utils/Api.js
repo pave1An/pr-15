@@ -12,11 +12,12 @@ class Api {
   }
 
   _request(endpoint, options) {
-    return fetch(`${this._baseUrl + endpoint}`,options).then(this._handleFirstResponse);
+    const { method, headers, body } = options;
+    return fetch(`${this._baseUrl + endpoint}`, { credentials: 'include', method, headers, body }).then(this._handleFirstResponse);
   }
 
   getUserInfo() {
-    return this._request('/users/me', {headers: this._headers});
+    return this._request('/users/me', { headers: this._headers });
   }
 
   patchUserInfo(data) {
@@ -71,9 +72,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  baseUrl: 'http://api.messto.nomoreparties.sbs',
   headers: {
-    authorization: '5df01682-9d36-4915-9eb9-b7271e1fc542',
     'Content-Type': 'application/json'
   }
 });
